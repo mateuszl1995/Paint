@@ -38,26 +38,26 @@ public class Translator {
 		setLanguage("en");
 		PLtranslations.put("File", "Plik");
 		PLtranslations.put("New", "Nowy");
-		PLtranslations.put("Open", "Otwórz");
+		PLtranslations.put("Open", "OtwÃ³rz");
 		PLtranslations.put("Save", "Zapisz");
 		PLtranslations.put("Save as...", "Zapisz jako...");
 		PLtranslations.put("Edit", "Edycja");
 		PLtranslations.put("Undo", "Cofnij");
-		PLtranslations.put("Redo", "Powtórz");
+		PLtranslations.put("Redo", "PowtÃ³rz");
 		PLtranslations.put("Size...", "Rozmiar...");
 		PLtranslations.put("Image", "Obraz");
-		PLtranslations.put("Language", "Jêzyk");
+		PLtranslations.put("Language", "JÄ™zyk");
 		PLtranslations.put("Polish", "Polski");
 		PLtranslations.put("English", "Angielski");
 		PLtranslations.put("Colors", "Kolory");
 		PLtranslations.put("Size", "Rozmiar");
-		PLtranslations.put("Tools", "Narzêdzia");
+		PLtranslations.put("Tools", "NarzÄ™dzia");
 		PLtranslations.put("Options", "Opcje");
-		PLtranslations.put("Fill", "Wype³nienie");
+		PLtranslations.put("Fill", "WypeÅ‚nienie");
 		PLtranslations.put("Dashed", "Przerywana linia");
 		PLtranslations.put("Set size of picture", "Ustaw rozmiar obrazka");
-		PLtranslations.put("Width", "Szerokoœæ");
-		PLtranslations.put("Height", "Wysokoœæ");
+		PLtranslations.put("Width", "SzerokoÅ›Ä‡");
+		PLtranslations.put("Height", "WysokoÅ›Ä‡");
 		PLtranslations.put("Cancel", "Anuluj");
 	}
 
