@@ -1,4 +1,4 @@
-package tpal;
+package plugins;
 
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.AbstractAction;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import tpal.Mediator;
+import tpal.Plugin;
 
 public class RotatePlugin implements Plugin {
 	JMenuItem menu;
@@ -90,9 +93,9 @@ public class RotatePlugin implements Plugin {
 	@Override
 	public void setLanguage(String language) {
 		if (language.equals("pl")) {
-			menu.setText("Obrót");
-			rotateLeft90.setText("Obrót 90 st. w lewo");
-			rotateRight90.setText("Obrót 90 st. w prawo");
+			menu.setText("Obrï¿½t");
+			rotateLeft90.setText("Obrï¿½t 90 st. w lewo");
+			rotateRight90.setText("Obrï¿½t 90 st. w prawo");
 			flipVertical.setText("Odbicie w pionie");
 			flipHorizontal.setText("Odbicie w poziomie");
 		} else {

@@ -1,4 +1,4 @@
-package tpal;
+package plugins;
 
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -9,6 +9,9 @@ import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import tpal.Mediator;
+import tpal.Plugin;
 
 public class ColorPlugin implements Plugin {
 	JMenuItem menu;
@@ -95,7 +98,7 @@ public class ColorPlugin implements Plugin {
 		if (language.equals("pl")) {
 			menu.setText("Kolor");
 			sepia.setText("Sepia");
-			grayscale.setText("Skala szaroœci");
+			grayscale.setText("Skala szaroï¿½ci");
 		} else {
 			menu.setText("Color");
 			sepia.setText("Sepia");
