@@ -8,4 +8,4 @@ Build JAR file
 mvn package
 
 Run JAR file
-java -jar ./lib/Paint*.jar
+java -jar ./lib/Paint-everything.jar

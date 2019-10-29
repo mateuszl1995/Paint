@@ -3,6 +3,8 @@ package tpal;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -32,9 +34,16 @@ public class Paint implements Mediator {
 		status = new Status();
 		drawArea.setStatus(status);
 		menu.fileManager.setStatus(status);
-
+		
+		String pluginsPath = null;
+		try {
+			File libFile = new File(Paint.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile();
+			pluginsPath = new File(libFile, "plugins").getPath();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 		PluginLoader loader = new PluginLoader();
-		plugins = loader.loadFromDirectory("plugins");
+		plugins = loader.loadPluginsFromDirectory(pluginsPath);
 		initializePlugins();
 	}
 

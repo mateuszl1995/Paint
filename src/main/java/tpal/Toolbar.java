@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class Toolbar {
-	JPanel controls;
+	JPanel panel;
 	JButton colorBtn, colorBtn2;
 	JLabel brush, line, rectangle, oval, actual;
 	JComboBox<String> brushSize;
@@ -31,24 +31,34 @@ public class Toolbar {
 	private JCheckBox fill, dashed;
 
 	public JPanel getPanel() {
-		return controls;
+		return panel;
 	}
 
 	public Toolbar(DrawArea d) {
-		prepareActionListener();
+		mouseListener = new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				setTool((JLabel) e.getSource());
+			}
+		};
+		
 		drawArea = d;
-		controls = new JPanel();
-		controls.setPreferredSize(new Dimension(130, 100));
-		controls.setBorder(new EmptyBorder(10, 5, 10, 5));
-		controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
-
+		panel = new JPanel();
+		panel.setPreferredSize(new Dimension(130, 100));
+		panel.setBorder(new EmptyBorder(10, 5, 10, 5));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JPanel colorsPanel = new JPanel();
+		colorsPanel.setLayout(new BoxLayout(colorsPanel, BoxLayout.X_AXIS));
+		int iconSize = 23;
 		colorBtn = new JButton("");
 		colorBtn.addActionListener(toolbarActionListener);
-		setSize(colorBtn, 27, 27);
-
+		setSize(colorBtn, iconSize, iconSize);
 		colorBtn2 = new JButton("");
 		colorBtn2.addActionListener(toolbarActionListener);
-		setSize(colorBtn2, 27, 27);
+		setSize(colorBtn2, iconSize, iconSize);
+		colorsPanel.add(colorBtn);
+		colorsPanel.add(colorBtn2);
+		panel.add(colorsPanel);
 
 		brush = new JLabel(new ImageIcon("img/paint-brush.png"), JLabel.CENTER);
 		line = new JLabel(new ImageIcon("img/line.png"), JLabel.CENTER);
@@ -56,14 +66,14 @@ public class Toolbar {
 		oval = new JLabel(new ImageIcon("img/oval2.png"), JLabel.CENTER);
 
 		addLabel("Colors");
-		addLabel("#1");
-		controls.add(colorBtn);
-		addLabel("#2");
-		controls.add(colorBtn2);
-		controls.add(Box.createRigidArea(new Dimension(0, 10)));
+		addLabel("1");
+		panel.add(colorBtn);
+		addLabel("2");
+		panel.add(colorBtn2);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		addBrushSize();
 		
-		controls.add(Box.createRigidArea(new Dimension(0, 10)));
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		addLabel("Tools");
 		addLabel(brush, "Brush");
 		addLabel(line, "Line");
@@ -71,7 +81,7 @@ public class Toolbar {
 		addLabel(rectangle, "Rectangle");
 		
 
-		controls.add(Box.createRigidArea(new Dimension(0, 10)));
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		addLabel("Options");
 		fill = new JCheckBox("Fill");
 		dashed = new JCheckBox("Dashed");
@@ -79,8 +89,8 @@ public class Toolbar {
 		dashed.setName("Dashed");
 		fill.addActionListener(toolbarActionListener);
 		dashed.addActionListener(toolbarActionListener);
-		controls.add(fill);
-		controls.add(dashed);
+		panel.add(fill);
+		panel.add(dashed);
 		clear();
 	}
 	
@@ -117,7 +127,7 @@ public class Toolbar {
 		addLabel("Size");
 		setSize(brushSize, 40, 20);
 		brushSize.setAlignmentX(0);
-		controls.add(brushSize);
+		panel.add(brushSize);
 	}
 
 	void setTool(JLabel tool) {
@@ -135,29 +145,21 @@ public class Toolbar {
 		img.addMouseListener(mouseListener);
 		img.setName(name);
 		img.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		controls.add(Box.createRigidArea(new Dimension(0, 5)));
-		controls.add(img);
+		panel.add(Box.createRigidArea(new Dimension(0, 5)));
+		panel.add(img);
 
 	}
 
 	void addLabel(String name) {
 		JLabel l = new JLabel(name);
 		l.setName(name);
-		controls.add(l);
+		panel.add(l);
 	}
 
 	void setSize(Component c, int width, int height) {
 		c.setMinimumSize(new Dimension(width, height));
 		c.setPreferredSize(new Dimension(width, height));
 		c.setMaximumSize(new Dimension(width, height));
-	}
-
-	void prepareActionListener() {
-		mouseListener = new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				setTool((JLabel) e.getSource());
-			}
-		};
 	}
 
 	int getBrushSize() {
